@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Actívate Jaén! - Tu gimnasio amigo</title>
+    <style>
+        /* Estilos generales */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        /* Header */
+        header {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1571902943202-507ec2618e8f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            color: white;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .logo {
+            margin-bottom: 20px;
+        }
+        
+        .logo h1 {
+            font-size: 4.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+            background: linear-gradient(45deg, #f39c12, #e74c3c, #9b59b6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: gradient 5s ease infinite;
+        }
+        
+        @keyframes gradient {
+            0% {background-position: 0% 50%;}
+            50% {background-position: 100% 50%;}
+            100% {background-position: 0% 50%;}
+        }
+        
+        .logo p {
+            font-size: 2rem;
+            font-style: italic;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+            color: #f39c12;
+            font-weight: bold;
+        }
+        
+        /* Navegación */
+        nav {
+            background-color: #222;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            justify-content: center;
+        }
+        
+        nav ul li {
+            padding: 15px 20px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: #f39c12;
+        }
+        
+        /* Secciones */
+        section {
+            padding: 60px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2.5rem;
+            color: #333;
+        }
+        
+        /* Horarios */
+        #horarios {
+            background-image: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-attachment: fixed;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        table th, table td {
+            padding: 12px 15px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+        
+        table th {
+            background-color: #f39c12;
+            color: white;
+        }
+        
+        table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        
+        table tr:hover {
+            background-color: #ddd;
+        }
+        
+        /* Clases */
+        .clases-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .clase-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .clase-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .clase-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .clase-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .clase-card:hover .clase-img img {
+            transform: scale(1.1);
+        }
+        
+        .clase-info {
+            padding: 20px;
+        }
+        
+        .clase-info h3 {
+            margin-bottom: 10px;
+            color: #f39c12;
+        }
+        
+        /* Entrenadores */
+        .entrenadores-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .entrenador-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        
+        .entrenador-img {
+            height: 250px;
+            overflow: hidden;
+        }
+        
+        .entrenador-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .entrenador-info {
+            padding: 20px;
+        }
+        
+        .entrenador-info h3 {
+            margin-bottom: 5px;
+            color: #f39c12;
+        }
+        
+        .entrenador-info p {
+            color: #666;
+            font-style: italic;
+        }
+        
+        /* Formulario */
+        .form-container {
+            max-width: 600px;
+            margin: 40px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        
+        .form-group textarea {
+            height: 150px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: #f39c12;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .btn:hover {
+            background: #e67e22;
+        }
+        
+        /* Nuevos estilos para la sección de inicio */
+        .destacado {
+            text-align: center;
+            margin: 40px 0;
+        }
+        
+        .destacado h2 {
+            font-size: 3rem;
+            color: #e74c3c;
+            margin-bottom: 20px;
+        }
+        
+        .destacado p {
+            font-size: 1.5rem;
+            color: #333;
+        }
+        
+        .planes-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 50px 0;
+        }
+        
+        .plan-card {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .plan-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .plan-card h3 {
+            color: #f39c12;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+        
+        .plan-card .precio {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #e74c3c;
+            margin: 20px 0;
+        }
+        
+        .plan-card .beneficios {
+            list-style: none;
+            margin: 20px 0;
+        }
+        
+        .plan-card .beneficios li {
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .instalaciones-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 50px 0;
+        }
+        
+        .instalacion-card {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .instalacion-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .instalacion-card:hover img {
+            transform: scale(1.05);
+        }
+        
+        .instalacion-card p {
+            background: white;
+            padding: 15px;
+            text-align: center;
+            font-weight: bold;
+        }
+        
+        /* Footer */
+        footer {
+            background: #222;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 40px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+            }
+            
+            .logo h1 {
+                font-size: 3rem;
+            }
+            
+            .logo p {
+                font-size: 1.5rem;
+            }
+            
+            .destacado h2 {
+                font-size: 2.2rem;
+            }
+            
+            .destacado p {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header con imagen de fondo -->
+    <header>
+        <div class="logo">
+            <h1>ACTÍVATE JAÉN</h1>
+            <p>"¡Muévete, diviértete, supérate! "</p>
+        </div>
+    </header>
+    
+    <!-- Navegación -->
+    <nav>
+        <ul>
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#horarios">Horarios</a></li>
+            <li><a href="#clases">Clases</a></li>
+            <li><a href="#entrenadores">Entrenadores</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+        </ul>
+    </nav>
+    
+    <!-- Sección de inicio -->
+    <section id="inicio" class="container">
+        <div class="destacado">
+            <h2>BIENVENIDO A ACTÍVATE JAÉN</h2>
+            <p>El gimnasio más completo de Jaén donde tu transformación comienza</p>
+        </div>
+        
+        <p>En <strong>Actívate Jaén</strong> no solo te ayudamos a alcanzar tus objetivos fitness, sino que creamos una comunidad de personas motivadas que se apoyan mutuamente. Nuestras instalaciones de última generación, combinadas con un equipo de entrenadores altamente cualificados, te proporcionarán la experiencia de entrenamiento más completa de la ciudad.</p>
+        
+        <!-- Planes de membresía -->
+        <h2 class="section-title">Nuestros Planes</h2>
+        
+        <div class="planes-container">
+            <div class="plan-card">
+                <h3>Plan Prueba</h3>
+                <div class="precio">15€</div>
+                <ul class="beneficios">
+                    <li>1 semana de acceso ilimitado</li>
+                    <li>Prueba 2 clases grupales</li>
+                    <li>Sesión de orientación con entrenador</li>
+                    <li>Sin compromiso de permanencia</li>
+                </ul>
+                <button class="btn">¡Empieza hoy!</button>
+            </div>
+            
+            <div class="plan-card">
+                <h3>Plan Mensual</h3>
+                <div class="precio">45€/mes</div>
+                <ul class="beneficios">
+                    <li>Acceso ilimitado al gimnasio</li>
+                    <li>Clases grupales incluidas</li>
+                    <li>1 sesión personalizada al mes</li>
+                    <li>Acceso a vestuarios y taquillas</li>
+                    <li>Sin permanencia</li>
+                </ul>
+                <button class="btn">¡Quiero unirme!</button>
+            </div>
+            
+            <div class="plan-card">
+                <h3>Plan Anual</h3>
+                <div class="precio">400€/año</div>
+                <ul class="beneficios">
+                    <li>Ahorra más de 100€ frente al plan mensual</li>
+                    <li>Acceso ilimitado a todas las instalaciones</li>
+                    <li>Todas las clases grupales incluidas</li>
+                    <li>4 sesiones personalizadas al año</li>
+                    <li>Regalo de kit de bienvenida</li>
+                    <li>Descuentos en suplementos</li>
+                </ul>
+                <button class="btn">¡Ahorra ahora!</button>
+            </div>
+        </div>
+        
+        <!-- Instalaciones -->
+        <h2 class="section-title">Nuestras Instalaciones</h2>
+        
+        <div class="instalaciones-container">
+            <div class="instalacion-card">
+                <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Área de musculación">
+                <p>Área de musculación con equipos de última generación</p>
+            </div>
+            
+            <div class="instalacion-card">
+                <img src="https://sumafitnessclub.com/piscinavalencia/wp-content/uploads/2020/02/sala-spinning-gimnasio-suma-fitness-club-piscina-valencia.jpg" alt="Sala de spinning">
+                <p>Sala de spinning con bicicletas profesionales</p>
+            </div>
+            
+            <div class="instalacion-card">
+                <img src="https://media.istockphoto.com/id/2154967692/es/foto/pelotas-de-fitness-en-la-sala-de-ejercicios.jpg?s=612x612&w=0&k=20&c=QxWJ5JSCrOh5g27iugAEDNgpB8FM5CIjBJJsqVlM_T4=" alt="Sala de yoga">
+                <p>Amplia sala de yoga y pilates</p>
+            </div>
+            
+            <div class="instalacion-card">
+                <img src="https://img.freepik.com/fotos-premium/vestuario-gimnasio-vacio-fitness-club-deportivo-oscuro-vestuario_116317-19343.jpg" alt="Vestuarios">
+                <p>Vestuarios modernos y espaciosos</p>
+            </div>
+            
+            <div class="instalacion-card">
+                <img src="https://img.freepik.com/fotos-premium/foto-zona-gimnasio-cintas-correr-elipticas_933496-55084.jpg" alt="Área cardiovascular">
+                <p>Zona cardiovascular con vistas panorámicas</p>
+            </div>
+            
+            <div class="instalacion-card">
+                <img src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Área funcional">
+                <p>Área de entrenamiento funcional</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Sección de horarios -->
+    <section id="horarios" class="container">
+        <h2 class="section-title">Nuestros Horarios</h2>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Clase</th>
+                    <th>Lunes</th>
+                    <th>Martes</th>
+                    <th>Miércoles</th>
+                    <th>Jueves</th>
+                    <th>Viernes</th>
+                    <th>Sábado</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Yoga</td>
+                    <td>9:00 - 10:00</td>
+                    <td>-</td>
+                    <td>9:00 - 10:00</td>
+                    <td>-</td>
+                    <td>9:00 - 10:00</td>
+                    <td>11:00 - 12:00</td>
+                </tr>
+                <tr>
+                    <td>Spinning</td>
+                    <td>18:00 - 19:00</td>
+                    <td>12:00 - 13:00</td>
+                    <td>18:00 - 19:00</td>
+                    <td>12:00 - 13:00</td>
+                    <td>18:00 - 19:00</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>CrossFit</td>
+                    <td>10:00 - 11:00</td>
+                    <td>19:00 - 20:00</td>
+                    <td>10:00 - 11:00</td>
+                    <td>19:00 - 20:00</td>
+                    <td>10:00 - 11:00</td>
+                    <td>10:00 - 11:00</td>
+                </tr>
+                <tr>
+                    <td>Zumba</td>
+                    <td>-</td>
+                    <td>17:00 - 18:00</td>
+                    <td>-</td>
+                    <td>17:00 - 18:00</td>
+                    <td>-</td>
+                    <td>12:00 - 13:00</td>
+                </tr>
+                <tr>
+                    <td>Pilates</td>
+                    <td>12:00 - 13:00</td>
+                    <td>-</td>
+                    <td>12:00 - 13:00</td>
+                    <td>-</td>
+                    <td>12:00 - 13:00</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>Boxeo Fitness</td>
+                    <td>17:00 - 18:00</td>
+                    <td>10:00 - 11:00</td>
+                    <td>17:00 - 18:00</td>
+                    <td>10:00 - 11:00</td>
+                    <td>17:00 - 18:00</td>
+                    <td>-</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <p style="text-align: center; margin-top: 20px;">* El gimnasio permanece abierto de lunes a viernes de 7:00 a 22:00 y sábados de 9:00 a 15:00</p>
+    </section>
+    
+    <!-- Sección de clases -->
+    <section id="clases" class="container">
+        <h2 class="section-title">Nuestras Clases</h2>
+        
+        <div class="clases-container">
+            <div class="clase-card">
+                <div class="clase-img">
+                    <img src="https://img.freepik.com/foto-gratis/clases-grupales-yoga-dentro-gimnasio_1303-14779.jpg" alt="Yoga">
+                </div>
+                <div class="clase-info">
+                    <h3>Yoga</h3>
+                    <p>Mejora tu flexibilidad, fuerza y equilibrio con nuestras clases de yoga adaptadas a todos los niveles. Enfócate en tu respiración y encuentra tu paz interior.</p>
+                </div>
+            </div>
+            
+            <div class="clase-card">
+                <div class="clase-img">
+                    <img src="https://www.spinningcentergym.com/wp-content/uploads/2024/09/3N7A0063-1-scaled.webp" alt="Spinning">
+                </div>
+                <div class="clase-info">
+                    <h3>Spinning</h3>
+                    <p>Quema calorías y mejora tu resistencia cardiovascular con nuestras intensas clases de spinning. Música motivadora y entrenadores expertos te guiarán en cada pedaleo.</p>
+                </div>
+            </div>
+            
+            <div class="clase-card">
+                <div class="clase-img">
+                    <img src="https://www.forumsport.com/es-es/blogs/fitness/wp-content/uploads/sites/6/2020/11/primeraclase2.jpg" alt="CrossFit">
+                </div>
+                <div class="clase-info">
+                    <h3>CrossFit</h3>
+                    <p>Entrenamiento funcional de alta intensidad que combina levantamiento de pesas, ejercicios cardiovasculares y movimientos gimnásticos. ¡Supera tus límites!</p>
+                </div>
+            </div>
+            
+            <div class="clase-card">
+                <div class="clase-img">
+                    <img src="https://landing-pages-smart.s3.amazonaws.com/modalidades-treinos/es/zumba/cover.png" alt="Zumba">
+                </div>
+                <div class="clase-info">
+                    <h3>Zumba</h3>
+                    <p>¡Diviértete bailando mientras quemas calorías! Nuestras clases de Zumba combinan ritmos latinos y movimientos de baile con ejercicios aeróbicos.</p>
+                </div>
+            </div>
+            
+            <div class="clase-card">
+                <div class="clase-img">
+                    <img src="https://fisiopilatesenpositivo.es/wp-content/uploads/2022/01/Pilates-para-principiantes-en-Fisio-Pilates-en-positivo.png" alt="Pilates">
+                </div>
+                <div class="clase-info">
+                    <h3>Pilates</h3>
+                    <p>Fortalece tu core, mejora tu postura y aumenta tu flexibilidad con el método Pilates. Ideal para rehabilitación y prevención de lesiones.</p>
+                </div>
+            </div>
+            
+            <div class="clase-card">
+                <div class="clase-img">
+                    <img src="https://www.moralesbox.com/wp-content/uploads/2025/01/boxeo-y-salud-morales-box-madrid-entrenamiento-scaled.jpg" alt="Boxeo">
+                </div>
+                <div class="clase-info">
+                    <h3>Boxeo Fitness</h3>
+                    <p>Combina técnicas de boxeo con entrenamiento cardiovascular para un ejercicio completo que mejora tu coordinación, resistencia y fuerza.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Sección de entrenadores -->
+    <section id="entrenadores" class="container">
+        <h2 class="section-title">Nuestros Entrenadores</h2>
+        
+        <div class="entrenadores-container">
+            <div class="entrenador-card">
+                <div class="entrenador-img">
+                    <img src="https://orthosmallorca.es/wp-content/uploads/2023/01/iStock-675179390-scaled.jpg" alt="Entrenador 1">
+                </div>
+                <div class="entrenador-info">
+                    <h3>Carlos Méndez</h3>
+                    <p>Especialista en CrossFit y entrenamiento funcional</p>
+                    <p>10 años de experiencia</p>
+                </div>
+            </div>
+            
+            <div class="entrenador-card">
+                <div class="entrenador-img">
+                    <img src="https://www.cimformacion.com/blog/wp-content/uploads/2020/09/trabajar-como-monitor-de-pilates.jpg" alt="Entrenadora 2">
+                </div>
+                <div class="entrenador-info">
+                    <h3>Laura Gómez</h3>
+                    <p>Instructora de Yoga y Pilates</p>
+                    <p>Certificada internacionalmente</p>
+                </div>
+            </div>
+            
+            <div class="entrenador-card">
+                <div class="entrenador-img">
+                    <img src="https://www.feda.net/wp-content/uploads/2021/03/ciclo-indoor.jpg" alt="Entrenador 3">
+                </div>
+                <div class="entrenador-info">
+                    <h3>Javier Ruiz</h3>
+                    <p>Especialista en spinning y cardio</p>
+                    <p>Ex-ciclista profesional</p>
+                </div>
+            </div>
+            
+            <div class="entrenador-card">
+                <div class="entrenador-img">
+                    <img src="https://st2.depositphotos.com/2053359/7850/i/450/depositphotos_78506086-stock-photo-female-fitness-instructor.jpg" alt="Entrenadora 4">
+                </div>
+                <div class="entrenador-info">
+                    <h3>Ana Torres</h3>
+                    <p>Instructora de Zumba y baile fitness</p>
+                    <p>Coreógrafa profesional</p>
+                </div>
+            </div>
+            
+            <!-- AÑADIDO: Nuevo entrenador de boxeo -->
+            <div class="entrenador-card">
+                <div class="entrenador-img">
+                    <img src="https://resizer.glanacion.com/resizer/v2/walter-ezequiel-77SLAUJ47ZAJ3BCDYIHK2DM5OM.jpg?auth=e0c7be15e25a9cd53fcfbcd25698413fb06aeaca1653e72201e55bdd7d531a23&width=1200&quality=70&smart=false&height=800" alt="Entrenador de boxeo">
+                </div>
+                <div class="entrenador-info">
+                    <h3>David "El Toro" Mendoza</h3>
+                    <p>Entrenador de Boxeo Fitness</p>
+                    <p>Ex-campeón regional de boxeo</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Sección de contacto -->
+    <section id="contacto" class="container">
+        <h2 class="section-title">Contacta con Nosotros</h2>
+        
+        <div class="form-container">
+            <form action="#" method="POST">
+                <div class="form-group">
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" id="nombre" name="nombre" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="telefono">Teléfono:</label>
+                    <input type="tel" id="telefono" name="telefono">
+                </div>
+                
+                <div class="form-group">
+                    <label for="interes">Interesado en:</label>
+                    <select id="interes" name="interes">
+                        <option value="informacion">Información general</option>
+                        <option value="horarios">Consulta de horarios</option>
+                        <option value="clases">Información sobre clases</option>
+                        <option value="entrenadores">Contactar con entrenador</option>
+                        <option value="otro">Otro</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="mensaje">Mensaje:</label>
+                    <textarea id="mensaje" name="mensaje" required></textarea>
+                </div>
+                
+                <button type="submit" class="btn">Enviar Mensaje</button>
+            </form>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>© 2023 Actívate Jaén - Todos los derechos reservados</p>
+            <p>Diseñado por Sergio</p>
+            <p>Calle La Luna, 12 - 23001 Jaén</p>
+            <p>Teléfono: 953 124 476 | Email: info@activatejaen.com</p>
+        </div>
+    </footer>
+</body>
+</html>
